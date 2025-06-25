@@ -1,0 +1,35 @@
+#include <iostream>
+#include <string>
+#include <windows.h>
+using namespace std;
+
+struct contactoEmail{
+    string nombre;
+    char sexo;
+    int edad;
+    int telefono;
+    string email;
+    string nacionalidad;
+};
+
+void menu(){
+    char opcion;
+    cout << "Programa que simula un Gestor de Contactos\n";
+    do{
+        cout << "a) Agregar un contacto" << endl;
+        cout << "b) Eliminar un contacto" << endl;
+        cout << "c) Mostrar listado general de contactos registrados hasta el momento" << endl;
+        cout << "d) Mostrar listado de contactos existentes, ordenado por servidor de correo de las cuentas" << endl;
+        cout << "e) Salir" << endl;
+        cout << "Ingrese una opción: ";
+        cin >> opcion;
+    }while (opcion != 'e');
+
+    cout << "Fin del programa..." << endl;
+}
+
+int main (){
+    SetConsoleOutputCP(CP_UTF8);
+    menu();
+    return 0;
+}
