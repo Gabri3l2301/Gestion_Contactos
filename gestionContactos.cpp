@@ -12,8 +12,22 @@ struct contactoEmail{
     string nacionalidad;
 };
 
-void agregarContacto(){
-
+void agregarContacto(int &contadorContactos, contactoEmail cont[]){
+    cout << "Ingrese el nombre del contacto " << contadorContactos + 1 << ":" << endl;
+    cin.ignore();
+    getline(cin, cont[contadorContactos].nombre);
+    cout << "Ingrese el sexo (m/f):" << endl;
+    cin >> cont[contadorContactos].sexo;
+    cout << "Ingrese la edad:" << endl;
+    cin >> cont[contadorContactos].edad;
+    cout << "Ingrese el número:" << endl;
+    cin >> cont[contadorContactos].telefono;
+    cout << "Ingrese el email:" << endl;
+    cin.ignore();
+    getline(cin, cont[contadorContactos].email);
+    cout << "Ingrese la nacionalidad:" << endl;
+    getline(cin, cont[contadorContactos].nacionalidad);
+    contadorContactos++;
 }
 
 void eliminarContacto(){
@@ -29,6 +43,10 @@ void mostrarListadoPorServidor(){
 }
 
 void menu(){
+    SetConsoleOutputCP(CP_UTF8);
+    const int MAX_CONTACTOS = 100;
+    contactoEmail contactos[MAX_CONTACTOS];
+    int contadorContactos = 0;
     char opcion;
     cout << "Programa que simula un Gestor de Contactos\n";
     do{
@@ -42,7 +60,7 @@ void menu(){
 
         switch (opcion){
             case 'a':
-                agregarContacto();
+                agregarContacto(contadorContactos, contactos);
                 break;
             case 'b':
                 eliminarContacto();
@@ -66,7 +84,6 @@ void menu(){
 }
 
 int main (){
-    SetConsoleOutputCP(CP_UTF8);
     menu();
     return 0;
 }
