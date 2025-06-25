@@ -12,6 +12,22 @@ struct contactoEmail{
     string nacionalidad;
 };
 
+void agregarContacto(){
+
+}
+
+void eliminarContacto(){
+
+}
+
+void mostrarListadoGeneral(){
+
+}
+
+void mostrarListadoPorServidor(){
+
+}
+
 void menu(){
     char opcion;
     cout << "Programa que simula un Gestor de Contactos\n";
@@ -23,6 +39,27 @@ void menu(){
         cout << "e) Salir" << endl;
         cout << "Ingrese una opción: ";
         cin >> opcion;
+
+        switch (opcion){
+            case 'a':
+                agregarContacto();
+                break;
+            case 'b':
+                eliminarContacto();
+                break;
+            case 'c':
+                mostrarListadoGeneral();
+                break;
+            case 'd':
+                mostrarListadoPorServidor();
+                break;
+            case 'e':
+                cout << "Saliendo del programa..." << endl;
+                break;
+            default:
+                cout << "Error, ingrese una letra correcta..." << endl;
+                break;
+        }
     }while (opcion != 'e');
 
     cout << "Fin del programa..." << endl;
