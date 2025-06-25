@@ -12,8 +12,8 @@ struct contactoEmail{
     string nacionalidad;
 };
 
-void agregarContacto(int &contadorContactos, contactoEmail cont[]){
-    cout << "Ingrese el nombre del contacto número " << contadorContactos + 1 << ":" << endl;
+void agregarContacto(contactoEmail cont[], int &contadorContactos){
+    cout << "\nIngrese el nombre del contacto número " << contadorContactos + 1 << ":" << endl;
     cin.ignore();
     getline(cin, cont[contadorContactos].nombre);
     cout << "Ingrese el sexo (m/f):" << endl;
@@ -32,7 +32,7 @@ void agregarContacto(int &contadorContactos, contactoEmail cont[]){
 
 void eliminarContacto(contactoEmail cont[], int &contadorContactos){
     int indice;
-    cout << "Ingrese el número del contacto que desea eliminar:" << endl;
+    cout << "\nIngrese el número del contacto que desea eliminar:" << endl;
     cin >> indice;
     if (indice > 0 && indice <= contadorContactos){
         for (int i = indice - 1; i < contadorContactos - 1; i++){
@@ -41,12 +41,25 @@ void eliminarContacto(contactoEmail cont[], int &contadorContactos){
         contadorContactos--;
         cout << "Contacto eliminado correctamente." << endl;
     }else {
-        cout << "Número de contacto no encontrado..." << endl;
+        cout << "\nNúmero de contacto no encontrado..." << endl;
     }
 }
 
-void mostrarListadoGeneral(){
-
+void mostrarListadoGeneral(contactoEmail cont[], int contadorContactos){
+    if (contadorContactos != 0){
+        cout << "\nLos contactos actuales son:\n\n";
+        for (int i = 0; i < contadorContactos; i++){
+            cout << "Contacto número " << i + 1 << endl;
+            cout << "Nombre: " << cont[i].nombre << endl;
+            cout << "Sexo: " << cont[i].sexo << endl;
+            cout << "Edad: " << cont[i].edad << endl;
+            cout << "Teléfono: " << cont[i].telefono << endl;
+            cout << "Email: " << cont[i].email << endl;
+            cout << "Nacionalidad: " << cont[i].nacionalidad << endl;
+        }
+    }else {
+        cout << "\nUsted todavía no agregó ningún contacto..." << endl;
+    }
 }
 
 void mostrarListadoPorServidor(){
@@ -71,13 +84,13 @@ void menu(){
 
         switch (opcion){
             case 'a':
-                agregarContacto(contadorContactos, contactos);
+                agregarContacto(contactos, contadorContactos);
                 break;
             case 'b':
                 eliminarContacto(contactos, contadorContactos);
                 break;
             case 'c':
-                mostrarListadoGeneral();
+                mostrarListadoGeneral(contactos, contadorContactos);
                 break;
             case 'd':
                 mostrarListadoPorServidor();
@@ -89,6 +102,9 @@ void menu(){
                 cout << "Error, ingrese una letra correcta..." << endl;
                 break;
         }
+        cin.ignore();
+        cin.get();
+        system("cls");
     }while (opcion != 'e');
 
     cout << "Fin del programa..." << endl;
