@@ -13,7 +13,7 @@ struct contactoEmail{
 };
 
 void agregarContacto(int &contadorContactos, contactoEmail cont[]){
-    cout << "Ingrese el nombre del contacto " << contadorContactos + 1 << ":" << endl;
+    cout << "Ingrese el nombre del contacto número " << contadorContactos + 1 << ":" << endl;
     cin.ignore();
     getline(cin, cont[contadorContactos].nombre);
     cout << "Ingrese el sexo (m/f):" << endl;
@@ -30,8 +30,19 @@ void agregarContacto(int &contadorContactos, contactoEmail cont[]){
     contadorContactos++;
 }
 
-void eliminarContacto(){
-
+void eliminarContacto(contactoEmail cont[], int &contadorContactos){
+    int indice;
+    cout << "Ingrese el número del contacto que desea eliminar:" << endl;
+    cin >> indice;
+    if (indice > 0 && indice <= contadorContactos){
+        for (int i = indice - 1; i < contadorContactos - 1; i++){
+            cont[i] = cont[i + 1];
+        }
+        contadorContactos--;
+        cout << "Contacto eliminado correctamente." << endl;
+    }else {
+        cout << "Número de contacto no encontrado..." << endl;
+    }
 }
 
 void mostrarListadoGeneral(){
@@ -63,7 +74,7 @@ void menu(){
                 agregarContacto(contadorContactos, contactos);
                 break;
             case 'b':
-                eliminarContacto();
+                eliminarContacto(contactos, contadorContactos);
                 break;
             case 'c':
                 mostrarListadoGeneral();
