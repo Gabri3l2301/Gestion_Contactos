@@ -31,17 +31,21 @@ void agregarContacto(contactoEmail cont[], int &contadorContactos){
 }
 
 void eliminarContacto(contactoEmail cont[], int &contadorContactos){
-    int indice;
-    cout << "\nIngrese el número del contacto que desea eliminar:" << endl;
-    cin >> indice;
-    if (indice > 0 && indice <= contadorContactos){
-        for (int i = indice - 1; i < contadorContactos - 1; i++){
-            cont[i] = cont[i + 1];
+    if (contadorContactos != 0){
+        int indice;
+        cout << "\nIngrese el número del contacto que desea eliminar:" << endl;
+        cin >> indice;
+        if (indice > 0 && indice <= contadorContactos){
+            for (int i = indice - 1; i < contadorContactos - 1; i++){
+                cont[i] = cont[i + 1];
+            }
+            contadorContactos--;
+            cout << "Contacto eliminado correctamente." << endl;
+        }else {
+            cout << "\nNúmero de contacto no encontrado..." << endl;
         }
-        contadorContactos--;
-        cout << "Contacto eliminado correctamente." << endl;
     }else {
-        cout << "\nNúmero de contacto no encontrado..." << endl;
+        cout << "\nUsted todavía no agregó ningún contacto" << endl;
     }
 }
 
