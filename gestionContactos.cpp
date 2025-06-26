@@ -62,8 +62,51 @@ void mostrarListadoGeneral(contactoEmail cont[], int contadorContactos){
     }
 }
 
-void mostrarListadoPorServidor(){
+void mostrarListadoPorServidor(contactoEmail cont[], int contadorContactos){
 
+    if (contadorContactos != 0){
+        int indices[100];
+        for (int i = 0; i < contadorContactos; i++){
+            indices[i] = i;
+        }
+        cout << "\nListado de contactos ordenados por servidor de correo:\n\n";
+        for (int i = 0; i < contadorContactos - 1; i++){
+            for (int j = i + 1; j < contadorContactos; j++){
+                int posicion1 = 0;
+                while (cont[indices[i]].email[posicion1] != '@'){
+                    posicion1++;
+                }
+                int posicion2 = 0;
+                while (cont[indices[j]].email[posicion2] != '@'){
+                    posicion2++;
+                }
+                int a = posicion1 + 1;
+                int b = posicion2 + 1;
+                bool mayor = false;
+                while (cont[indices[i]].email[a] != '\0' && cont[indices[j]].email[b] != '\0'){
+                    if (cont[indices[i]].email[a] > cont[indices[j]].email[b]){
+                        mayor = true;
+                        break;
+                    } else if (cont[indices[i]].email[a] < cont[indices[j]].email[b]){
+                        mayor = false;
+                        break;
+                    }
+                    a++;
+                    b++;
+                }
+                if (!mayor && cont[indices[i]].email[a] != '\0' && cont[indices[j]].email[b] == '\0') {
+                    mayor = true;
+                }
+                if (mayor){
+                    int temp = indices[i];
+                    indices[i] = indices[j];
+                    indices[j] = temp;
+                }
+            }
+        }
+    }else {
+        cout << "\nUsted todavía no agregó ningún contacto..." << endl;
+    }
 }
 
 void menu(){
@@ -93,7 +136,7 @@ void menu(){
                 mostrarListadoGeneral(contactos, contadorContactos);
                 break;
             case 'd':
-                mostrarListadoPorServidor();
+                mostrarListadoPorServidor(contactos, contadorContactos);
                 break;
             case 'e':
                 cout << "Saliendo del programa..." << endl;
