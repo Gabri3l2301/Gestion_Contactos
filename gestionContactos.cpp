@@ -119,6 +119,16 @@ void mostrarListadoPorServidor(contactoEmail cont[], int contadorContactos){
                 }
             }
         }
+        for (int k = 0; k < contadorContactos; k++) {
+            int i = indices[k];
+            cout << "Contacto número " << i + 1 << endl;
+            cout << "Nombre: " << cont[i].nombre << endl;
+            cout << "Sexo: " << cont[i].sexo << endl;
+            cout << "Edad: " << cont[i].edad << endl;
+            cout << "Teléfono: " << cont[i].telefono << endl;
+            cout << "Email: " << cont[i].email << endl;
+            cout << "Nacionalidad: " << cont[i].nacionalidad << endl;
+        }
     }else {
         cout << "\nUsted todavía no agregó ningún contacto..." << endl;
     }
@@ -147,12 +157,18 @@ void menu(){
                 break;
             case 'b':
                 eliminarContacto(contactos, contadorContactos);
+                cin.ignore();
+                cin.get();
                 break;
             case 'c':
                 mostrarListadoGeneral(contactos, contadorContactos);
+                cin.ignore();
+                cin.get();
                 break;
             case 'd':
                 mostrarListadoPorServidor(contactos, contadorContactos);
+                cin.ignore();
+                cin.get();
                 break;
             case 'e':
                 cout << "Saliendo del programa..." << endl;
@@ -161,8 +177,6 @@ void menu(){
                 cout << "Error, ingrese una letra correcta..." << endl;
                 break;
         }
-        cin.ignore();
-        cin.get();
         system("cls");
     }while (opcion != 'e');
 
