@@ -16,25 +16,33 @@ void agregarContacto(contactoEmail cont[], int &contadorContactos){
     cout << "\nIngrese el nombre del contacto número " << contadorContactos + 1 << ":" << endl;
     cin.ignore();
     getline(cin, cont[contadorContactos].nombre);
+
     cout << "Ingrese el sexo (m/f):" << endl;
     cin >> cont[contadorContactos].sexo;
+    
     cout << "Ingrese la edad:" << endl;
     cin >> cont[contadorContactos].edad;
-    cout << "Ingrese el número:" << endl;
+    
+    cout << "Ingrese el número telefónico:" << endl;
     cin >> cont[contadorContactos].telefono;
+    
     cout << "Ingrese el email:" << endl;
     cin.ignore();
     getline(cin, cont[contadorContactos].email);
+    
     cout << "Ingrese la nacionalidad:" << endl;
     getline(cin, cont[contadorContactos].nacionalidad);
+    
     contadorContactos++;
 }
 
 void eliminarContacto(contactoEmail cont[], int &contadorContactos){
     if (contadorContactos != 0){
         int indice;
+        
         cout << "\nIngrese el número del contacto que desea eliminar:" << endl;
         cin >> indice;
+        
         if (indice > 0 && indice <= contadorContactos){
             for (int i = indice - 1; i < contadorContactos - 1; i++){
                 cont[i] = cont[i + 1];
@@ -67,9 +75,9 @@ void mostrarListadoGeneral(contactoEmail cont[], int contadorContactos){
 }
 
 void mostrarListadoPorServidor(contactoEmail cont[], int contadorContactos){
-
     if (contadorContactos != 0){
         int indices[100];
+        
         for (int i = 0; i < contadorContactos; i++){
             indices[i] = i;
         }
@@ -80,18 +88,21 @@ void mostrarListadoPorServidor(contactoEmail cont[], int contadorContactos){
                 while (cont[indices[i]].email[posicion1] != '@'){
                     posicion1++;
                 }
+                
                 int posicion2 = 0;
                 while (cont[indices[j]].email[posicion2] != '@'){
                     posicion2++;
                 }
+                
                 int a = posicion1 + 1;
                 int b = posicion2 + 1;
                 bool mayor = false;
+                
                 while (cont[indices[i]].email[a] != '\0' && cont[indices[j]].email[b] != '\0'){
                     if (cont[indices[i]].email[a] > cont[indices[j]].email[b]){
                         mayor = true;
                         break;
-                    } else if (cont[indices[i]].email[a] < cont[indices[j]].email[b]){
+                    }else if (cont[indices[i]].email[a] < cont[indices[j]].email[b]){
                         mayor = false;
                         break;
                     }
@@ -119,7 +130,8 @@ void menu(){
     contactoEmail contactos[MAX_CONTACTOS];
     int contadorContactos = 0;
     char opcion;
-    cout << "Programa que simula un Gestor de Contactos\n";
+    
+    cout << "----PROGRAMA QUE SIMULA UN GESTOR DE CONTACTOS----\n";
     do{
         cout << "a) Agregar un contacto" << endl;
         cout << "b) Eliminar un contacto" << endl;
